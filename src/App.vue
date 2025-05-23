@@ -1,23 +1,13 @@
 <script setup lang="ts">
 import { reactive, onMounted, onUnmounted, computed, ref } from "vue";
+// @ts-ignore
 import { GridLayout, GridItem } from "vue-grid-layout-v3";
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 const state = reactive({
   layout: [
@@ -128,14 +118,14 @@ function addStream() {
   newStream.value = "";
   saveLayout();
 }
-function removeStream(i) {
+function removeStream(i: any) {
   const idx = state.layout.findIndex((item) => item.i === i);
   if (idx !== -1) {
     state.layout.splice(idx, 1);
     saveLayout();
   }
 }
-function toggleChat(i) {
+function toggleChat(i: any) {
   const idx = state.layout.findIndex((item) => item.i === i);
   if (idx !== -1) {
     state.layout[idx].showChat = !state.layout[idx].showChat;

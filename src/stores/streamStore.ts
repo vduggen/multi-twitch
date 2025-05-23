@@ -1,15 +1,15 @@
-import { defineStore } from 'pinia';
-import { ref, computed } from 'vue';
-import type { Stream, Layout, StreamPosition } from '../types/stream';
+import { defineStore } from "pinia";
+import { ref } from "vue";
+import type { Stream, Layout, StreamPosition } from "../types/stream";
 
-export const useStreamStore = defineStore('stream', () => {
+export const useStreamStore = defineStore("stream", () => {
   const streams = ref<Stream[]>([]);
   const favorites = ref<string[]>([]);
   const currentLayout = ref<Layout>({
-    id: '2x2',
-    name: '2x2 Grid',
+    id: "2x2",
+    name: "2x2 Grid",
     rows: 2,
-    columns: 2
+    columns: 2,
   });
   const customPositions = ref<StreamPosition[]>([]);
 
@@ -18,7 +18,7 @@ export const useStreamStore = defineStore('stream', () => {
   };
 
   const removeStream = (streamId: string) => {
-    streams.value = streams.value.filter(s => s.id !== streamId);
+    streams.value = streams.value.filter((s) => s.id !== streamId);
   };
 
   const toggleFavorite = (channelName: string) => {
@@ -28,7 +28,7 @@ export const useStreamStore = defineStore('stream', () => {
     } else {
       favorites.value.splice(index, 1);
     }
-    localStorage.setItem('favorites', JSON.stringify(favorites.value));
+    localStorage.setItem("favorites", JSON.stringify(favorites.value));
   };
 
   const setLayout = (layout: Layout) => {
@@ -36,7 +36,9 @@ export const useStreamStore = defineStore('stream', () => {
   };
 
   const updateStreamPosition = (position: StreamPosition) => {
-    const index = customPositions.value.findIndex(p => p.streamId === position.streamId);
+    const index = customPositions.value.findIndex(
+      (p) => p.streamId === position.streamId
+    );
     if (index === -1) {
       customPositions.value.push(position);
     } else {
@@ -45,7 +47,7 @@ export const useStreamStore = defineStore('stream', () => {
   };
 
   // Load favorites from localStorage on initialization
-  const savedFavorites = localStorage.getItem('favorites');
+  const savedFavorites = localStorage.getItem("favorites");
   if (savedFavorites) {
     favorites.value = JSON.parse(savedFavorites);
   }
@@ -59,6 +61,6 @@ export const useStreamStore = defineStore('stream', () => {
     removeStream,
     toggleFavorite,
     setLayout,
-    updateStreamPosition
+    updateStreamPosition,
   };
 });

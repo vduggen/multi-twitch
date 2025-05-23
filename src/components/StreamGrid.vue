@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { useStreamStore } from '../stores/streamStore';
-import StreamWindow from './StreamWindow.vue';
-import type { Stream } from '../types/stream';
+import { computed } from "vue";
+import { useStreamStore } from "../stores/streamStore";
+import StreamWindow from "./StreamWindow.vue";
+// import type { Stream } from '../types/stream';
 
 const store = useStreamStore();
 
 const gridStyle = computed(() => {
   const { rows, columns } = store.currentLayout;
   return {
-    display: 'grid',
+    display: "grid",
     gridTemplateRows: `repeat(${rows}, 1fr)`,
     gridTemplateColumns: `repeat(${columns}, 1fr)`,
-    gap: '1rem',
-    height: '100%',
+    gap: "1rem",
+    height: "100%",
   };
 });
 </script>
